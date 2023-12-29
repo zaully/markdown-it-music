@@ -17,7 +17,7 @@ function normalizeToken(instrument, token) {
 }
 
 function tokenize(instrument, data) {
-  const re = /[^\s]+/g;
+  const re = /([A-Za-z△ø0-9#]+|\(|\||\)|([\u4e00-\u9fff\u3400-\u4dbf\ufa0e\ufa0f\ufa11\ufa13\ufa14\ufa1f\ufa21\ufa23\ufa24\ufa27\ufa28\ufa29\u3006\u3007]|[\ud840-\ud868\ud86a-\ud879\ud880-\ud887][\udc00-\udfff]|\ud869[\udc00-\udedf\udf00-\udfff]|\ud87a[\udc00-\udfef]|\ud888[\udc00-\udfaf])([\ufe00-\ufe0f]|\udb40[\udd00-\uddef])?)/g;
   const events = [];
 
   let match;
