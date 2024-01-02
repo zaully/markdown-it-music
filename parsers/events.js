@@ -93,8 +93,9 @@ class Line {
         const eventToAdd = events.shift();
 
         eventToAdd.voice = voiceName;
-        eventToAdd.offset =
-          this.spacesBetweenEvents + eventToAdd.index - startIndex;
+        eventToAdd.offset = this.spacesBetweenEvents + eventToAdd.index - startIndex;
+
+        console.log('eventToAdd', eventToAdd, this.spacesBetweenEvents, eventToAdd.index, startIndex);
 
         line.push(eventToAdd);
         voicesAdded.push(voiceName);
