@@ -5,6 +5,8 @@ const { parseVoicing } = require("../lib/voicing");
 const { guitarChordbook } = require("../lib/chordbook");
 const { Chord, compareChords } = require("../lib/chord.js");
 
+const invisibleRe = /^[_]+$/
+
 class ChordsRenderer {
   constructor(opts) {
     this.voiceOrder = [];
@@ -84,6 +86,10 @@ class ChordsRenderer {
     return eventDiv + `</div>`;
   }
 
+  shouldBeInvisile(content) {
+    return ((content || '').match(invisibleRe) || []).length === 1;
+  }
+
   createContentSpan(voice) {
     const content = voice.content.toString();
     if (voice.content instanceof Chord) {
@@ -100,8 +106,12 @@ class ChordsRenderer {
           `>${content}</span>`
         );
       } else {
-        return `<span class="chord highlight">${content}</span>`;
+        // return `<span class="chord highlight">${content}</span>`;
+        return `<span class="chord">${content}</span>`;
       }
+    }
+    if (this.shouldBeInvisile(content)) {
+      return " ".repeat(content.length);
     }
     return content;
   }
