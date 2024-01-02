@@ -93,22 +93,23 @@ class ChordsRenderer {
   createContentSpan(voice) {
     const content = voice.content.toString();
     if (voice.content instanceof Chord) {
-      if (guitarChordbook.has(content)) {
-        if (!this.isChordUsed(voice.content)) {
-          this.chordsUsed.push(voice.content);
-        }
-        const id = `${this.chordIndex++}`;
-        const attrValue = voice.content.toAttributeValue();
-        return (
-          `<span id="chord-${id}" class="chord"` +
-          ` onmouseover="showTooltip('chord-${id}', '${attrValue}')"` +
-          ` onmouseout="hideTooltip('${attrValue}')"` +
-          `>${content}</span>`
-        );
-      } else {
-        // return `<span class="chord highlight">${content}</span>`;
-        return `<span class="chord">${content}</span>`;
-      }
+      // no need
+      // if (guitarChordbook.has(content)) {
+      //   if (!this.isChordUsed(voice.content)) {
+      //     this.chordsUsed.push(voice.content);
+      //   }
+      //   const id = `${this.chordIndex++}`;
+      //   const attrValue = voice.content.toAttributeValue();
+      //   return (
+      //     `<span id="chord-${id}" class="chord"` +
+      //     ` onmouseover="showTooltip('chord-${id}', '${attrValue}')"` +
+      //     ` onmouseout="hideTooltip('${attrValue}')"` +
+      //     `>${content}</span>`
+      //   );
+      // } else {
+      //   return `<span class="chord highlight">${content}</span>`;
+      // }
+      return `<span class="chord">${content}</span>`;
     }
     if (this.shouldBeInvisile(content)) {
       return " ".repeat(content.length);
