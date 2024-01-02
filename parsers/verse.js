@@ -9,10 +9,6 @@ function normalizeToken(instrument, token) {
     if (isChord(token)) {
       return parseChord(token);
     }
-    if (isAnnotation(token)) {
-      return token;
-    }
-    throw new Error(`Invalid token: ${token}`);
   }
   return token;
 }
