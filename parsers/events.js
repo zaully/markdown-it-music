@@ -71,6 +71,7 @@ class Line {
     const longestEventMaxIndex =
       longestEventMinIndex + longestEvent.content.toString().length;
 
+    var rollback = false;
     phrase.forEach((events, voiceName) => {
       if (events.length === 0) {
         return;
@@ -95,14 +96,22 @@ class Line {
         eventToAdd.voice = voiceName;
         eventToAdd.offset = this.spacesBetweenEvents + eventToAdd.index - startIndex;
 
-        console.log('eventToAdd', eventToAdd, this.spacesBetweenEvents, eventToAdd.index, startIndex);
+        if (eventToAdd.content == '|') {
+          rollback = true;
+          console.log('eventToAdd.content == |');
+        }
 
         line.push(eventToAdd);
         voicesAdded.push(voiceName);
       }
     });
 
-    this.spacesBetweenEvents = 1;
+    if (rollback) {
+      rollback = false;
+      this.spacesBetweenEvents = 0;
+    } else {
+      this.spacesBetweenEvents = 1;
+    }
 
     return { voicesAdded, line };
   }
