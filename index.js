@@ -61,7 +61,7 @@ function MarkdownMusic(md) {
   };
 
   md.renderer.rules.mmdVerse = (tokens, idx) => {
-    return md.chordsRenderer.renderVerse(tokens[idx].meta);
+    return md.chordsRenderer.renderVerse(tokens[idx].meta, md.userOpts);
   };
 
   md.renderer.rules.mmdFooter = () => {
@@ -87,6 +87,12 @@ function MarkdownMusic(md) {
     md.userOpts.maxWidth = maxWidth;
     return md;
   };
+
+  // Restricts instruments to render
+  md.setInstrumentsToShow = (instruments) => {
+    md.userOpts.instruments = instruments;
+    return md;
+  }
 
   md.addHeader = (header) => {
     md.userOpts.headers.push(header);

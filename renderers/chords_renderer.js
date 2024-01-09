@@ -1,6 +1,6 @@
 "use strict";
 
-const { convertVerseToEvents } = require("../parsers/events.js");
+const { convertVerseToEventsWithOpts } = require("../parsers/events.js");
 const { parseVoicing } = require("../lib/voicing");
 const { guitarChordbook } = require("../lib/chordbook");
 const { Chord, compareChords } = require("../lib/chord.js");
@@ -136,7 +136,7 @@ class ChordsRenderer {
     this.voiceOrder = verse.map((phrase) => Array.from(phrase.keys()));
     this.currentPhraseIndex = 0;
 
-    const lines = convertVerseToEvents(verse);
+    const lines = convertVerseToEventsWithOpts(verse, opts);
 
     return this.createEventHTMLChordChart(lines);
   }

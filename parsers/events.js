@@ -61,10 +61,11 @@ class Line {
    * @param {Map<String, Object[]>} phrase The phrase to pick events from.
    * @param {Object} longestEvent The longest (by content length) and first voice event from phrase.
    * @param {number} startIndex The index for the start of this event.
+   * @param {Set<string>} instruments Only renders necessary instruments.
    * @return {String[]} voiceAdded Voice names added to event list.
    * @return {Object[]} line List of the first of each voice from phrase that fit within bounds of longest event.
    */
-  addEvents(phrase, longestEvent, startIndex) {
+  addEvents(phrase, longestEvent, startIndex, instruments) {
     const line = [];
     const voicesAdded = [];
     const longestEventMinIndex = longestEvent.index;
@@ -94,15 +95,15 @@ class Line {
         const eventToAdd = events.shift();
 
         eventToAdd.voice = voiceName;
-        eventToAdd.offset = this.spacesBetweenEvents + eventToAdd.index - startIndex;
-
         if (eventToAdd.content == '|') {
           rollback = true;
-          console.log('eventToAdd.content == |');
+          this.spacesBetweenEvents = 0;
         }
-
-        line.push(eventToAdd);
-        voicesAdded.push(voiceName);
+        eventToAdd.offset = this.spacesBetweenEvents + eventToAdd.index - startIndex;
+        if (instruments.has(voiceName) || voiceName === "c" || voiceName === "c1") {
+          line.push(eventToAdd);
+          voicesAdded.push(voiceName);
+        }
       }
     });
 
@@ -121,9 +122,10 @@ class Line {
    *
    * @param {Map<String, Object[]>} phrase Map of voice names to voice object stack.
    * @param {String[]} voiceOrder Sort order for voices.
+   * @param {Set<string>} instruments Only renders necessary instruments.
    * @return {Object[]} List of event lists sorted (by voiceOrder).
    */
-  createLineFromPhrase(phrase, voiceOrder) {
+  createLineFromPhrase(phrase, voiceOrder, instruments) {
     const firstEventOfEachVoice = Array.from(phrase.values()).map(
       (voiceArr) => voiceArr[0],
     );
@@ -157,6 +159,7 @@ class Line {
       phrase,
       longestEvent,
       eventIndex,
+      instruments,
     );
 
     this.previousLine = line
@@ -170,14 +173,14 @@ class Line {
   }
 }
 
-function convertPhraseToEvents(phrase) {
+function convertPhraseToEvents(phrase, opts) {
   const voiceOrder = Array.from(phrase.keys());
   const events = [];
 
   // create events for this phrase until there are no events left to process.
   const line = new Line();
   while (!Array.from(phrase.values()).every((arr) => arr.length === 0)) {
-    events.push(line.createLineFromPhrase(phrase, voiceOrder));
+    events.push(line.createLineFromPhrase(phrase, voiceOrder, opts.instruments));
   }
 
   return events;
@@ -195,6 +198,13 @@ function convertVerseToEvents(verse) {
   });
 }
 
+function convertVerseToEventsWithOpts(verse, opts) {
+  return verse.map((phrase) => {
+    return convertPhraseToEvents(phrase, opts);
+  });
+}
+
 module.exports = {
   convertVerseToEvents,
+  convertVerseToEventsWithOpts,
 };
