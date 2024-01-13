@@ -42,29 +42,29 @@ class ChordsRenderer {
     return false;
   }
 
-  createEventHTMLChordChart(lines) {
+  createEventHTMLChordChart(lines, instruments) {
     let chartDiv = `<div class="chart">`;
 
     lines.forEach((line) => {
       // create line div for each event
-      chartDiv += this.createLineDiv(line);
+      chartDiv += this.createLineDiv(line, instruments);
       this.currentPhraseIndex++;
     });
 
     return chartDiv + "</div>";
   }
 
-  createLineDiv(line) {
+  createLineDiv(line, instruments) {
     let lineDiv = `<div class="line">`;
 
     line.forEach((event) => {
-      lineDiv += this.createEventDiv(event);
+      lineDiv += this.createEventDiv(event, instruments);
     });
 
     return lineDiv + "</div>";
   }
 
-  createEventDiv(event) {
+  createEventDiv(event, instruments) {
     let eventDiv = `<div class="event">`;
 
     const currentVoiceOrder = this.voiceOrder[this.currentPhraseIndex];
@@ -76,11 +76,13 @@ class ChordsRenderer {
     }
 
     currentVoiceOrder.forEach((voice) => {
-      if (event[0] && voice === event[0].voice) {
-        eventDiv += this.createVoiceDiv(event.shift());
-      } else {
-        const emptyDiv = "<div> </div>";
-        eventDiv += emptyDiv;
+      if (instruments.has(voice) || voice === "c" || voice === "c1") {
+        if (event[0] && voice === event[0].voice) {
+          eventDiv += this.createVoiceDiv(event.shift());
+        } else {
+          const emptyDiv = "<div> </div>";
+          eventDiv += emptyDiv;
+        }
       }
     });
     return eventDiv + `</div>`;
@@ -138,7 +140,7 @@ class ChordsRenderer {
 
     const lines = convertVerseToEventsWithOpts(verse, opts);
 
-    return this.createEventHTMLChordChart(lines);
+    return this.createEventHTMLChordChart(lines, opts.instruments);
   }
 }
 
