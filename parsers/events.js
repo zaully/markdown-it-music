@@ -180,7 +180,7 @@ function convertPhraseToEvents(phrase, opts) {
   // create events for this phrase until there are no events left to process.
   const line = new Line();
   while (!Array.from(phrase.values()).every((arr) => arr.length === 0)) {
-    events.push(line.createLineFromPhrase(phrase, voiceOrder, opts.instruments));
+    events.push(line.createLineFromPhrase(phrase, voiceOrder, opts.instrumentsConfig.instrumentsToRender));
   }
 
   return events;

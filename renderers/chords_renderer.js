@@ -140,7 +140,7 @@ class ChordsRenderer {
 
     const lines = convertVerseToEventsWithOpts(verse, opts);
 
-    return this.createEventHTMLChordChart(lines, opts.instruments);
+    return this.createEventHTMLChordChart(lines, opts.instrumentsConfig.instrumentsToRender);
   }
 }
 

@@ -88,9 +88,17 @@ function MarkdownMusic(md) {
     return md;
   };
 
-  // Restricts instruments to render
-  md.setInstrumentsToShow = (instruments) => {
-    md.userOpts.instruments = instruments;
+  // instrumentsConfig: Restricts instruments to render and total supported instruments
+  md.setInstrumentsConfig = (instrumentsConfig) => {
+    if (md.userOpts.instrumentsConfig) {
+      for (const instrumentName of md.userOpts.instrumentsConfig.instrumentsSupported) {
+        delete md.rendererRegistry[abc.lang+instrumentName];
+      }
+    }
+    md.userOpts.instrumentsConfig = instrumentsConfig;
+    for (const instrument of instrumentsConfig.instrumentsSupported) {
+      md.rendererRegistry[abc.lang+instrument] = abc.callback;
+    }
     return md;
   }
 
@@ -107,7 +115,12 @@ function MarkdownMusic(md) {
     marker: ":",
     render: (tokens, idx) => {
       const token = tokens[idx];
-      return md.rendererRegistry[token.info](token.content, md.getOptions());
+      if (md.userOpts.instrumentsConfig.instrumentsToRender) {
+        if (md.userOpts.instrumentsConfig.instrumentsToRender.has(token.info.replace(abc.lang, ''))) {
+          return md.rendererRegistry[token.info](token.content, md.getOptions());
+        }
+      }
+      return '';
     },
     validate: (name) => name in md.rendererRegistry,
   });
