@@ -200,7 +200,7 @@ const LIGHT_THEME = `
   }
 
   .bar {
-    transform: scaleY(2.2);
+    transform: scaleY(1.8);
   }
 
   .c1 {
@@ -241,6 +241,10 @@ const DARK_THEME = `
   .tooltip {
     background: white;
     color: #333;
+  }
+
+  .bar {
+    transform: scaleY(1.8);
   }
 
   .c1 {
