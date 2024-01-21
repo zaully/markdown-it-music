@@ -200,7 +200,7 @@ const LIGHT_THEME = `
   }
 
   .bar {
-    transform: scaleY(1.8);
+    transform: scale(1.8);
   }
 
   .c1 {
@@ -216,15 +216,27 @@ const LIGHT_THEME = `
   }
 
   .l2 {
-    color: darkgreen;
+    color: black;
   }
 
   .l3 {
-    color: darkmagenta;
+    color: darkgreen;
   }
 
   .l4 {
+    color: darkmagenta;
+  }
+
+  .l5 {
     color: darkred;
+  }
+
+  .l6 {
+    color: darkslateblue;
+  }
+
+  .l7 {
+    color: darkslategrey;
   }
 
   div.diagram > svg {
@@ -244,7 +256,7 @@ const DARK_THEME = `
   }
 
   .bar {
-    transform: scaleY(1.8);
+    transform: scale(1.8);
   }
 
   .c1 {
@@ -260,15 +272,27 @@ const DARK_THEME = `
   }
 
   .l2 {
-    color: #009a2a;
+    color: #fefefe;
   }
 
   .l3 {
-    color: #ff9fb0;
+    color: #009a2a;
   }
 
   .l4 {
+    color: #ff9fb0;
+  }
+
+  .l5 {
     color: #fcdb95;
+  }
+
+  .l6 {
+    color: #dodgerblue;
+  }
+
+  .l7 {
+    color: #lightslategrey;
   }
 
   div.vextab > svg {
