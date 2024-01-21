@@ -19,7 +19,7 @@ const HEADER = `<!DOCTYPE html>
       placement: 'top',
       middleware: [
         FloatingUIDOM.offset(6),
-        FloatingUIDOM.flip(), 
+        FloatingUIDOM.flip(),
         FloatingUIDOM.shift({padding: 5}),
         FloatingUIDOM.arrow({element: arrow}),
       ],
@@ -35,14 +35,14 @@ const HEADER = `<!DOCTYPE html>
         bottom: 'top',
         left: 'right',
       }[placement.split('-')[0]];
-     
+
       Object.assign(arrow.style, {
         left: \`\${middlewareData.arrow.x}px\` || '',
         top: \`\${middlewareData.arrow.y}px\` || '',
         right: '',
         bottom: '',
         [staticSide]: '-4px',
-      });        
+      });
     })
   }
 
@@ -197,6 +197,10 @@ const LIGHT_THEME = `
 
   .scroll {
     color: white;
+  }
+
+  .bar {
+    transform: scaleY(2.2);
   }
 
   .c1 {

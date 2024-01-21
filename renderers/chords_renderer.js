@@ -92,6 +92,13 @@ class ChordsRenderer {
     return ((content || '').match(invisibleRe) || []).length === 1;
   }
 
+  isContentBarLine(voice) {
+    if (voice.content instanceof Chord) {
+      return false;
+    }
+    return voice.content.toString() === '|';
+  }
+
   createContentSpan(voice) {
     const content = voice.content.toString();
     if (voice.content instanceof Chord) {
@@ -124,6 +131,14 @@ class ChordsRenderer {
       voice.content = voice.content.transpose(this.transposeAmount);
     }
 
+    if (this.isContentBarLine(voice)) {
+      return (
+        `<div class="${voice.voice} bar">` +
+        " ".repeat(voice.offset) +
+        this.createContentSpan(voice) +
+        `</div>`
+      );
+    }
     return (
       `<div class="${voice.voice}">` +
       " ".repeat(voice.offset) +
