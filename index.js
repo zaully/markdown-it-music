@@ -116,8 +116,9 @@ function MarkdownMusic(md) {
     render: (tokens, idx) => {
       const token = tokens[idx];
       if (md.userOpts.instrumentsConfig.instrumentsToRender) {
-        if (md.userOpts.instrumentsConfig.instrumentsToRender.has(token.info.replace(abc.lang, ''))) {
-          return md.rendererRegistry[token.info](token.content, md.getOptions());
+        var ins = token.info.replace(abc.lang, '')
+        if (md.userOpts.instrumentsConfig.instrumentsToRender.has(ins)) {
+          return '<div class="'+ ins +'">' + md.rendererRegistry[token.info](token.content, md.getOptions()) + '</div>';
         }
       }
       return '';
