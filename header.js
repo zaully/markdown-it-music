@@ -288,11 +288,11 @@ const DARK_THEME = `
   }
 
   .l6 {
-    color: #dodgerblue;
+    color: #1E90FF;
   }
 
   .l7 {
-    color: #lightslategrey;
+    color: #778899;
   }
 
   div.vextab > svg {
