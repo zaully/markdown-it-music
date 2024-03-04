@@ -42,20 +42,22 @@ class ChordsRenderer {
     return false;
   }
 
-  createEventHTMLChordChart(lines, instruments) {
+  createEventHTMLChordChart(lines, instruments, width) {
     let chartDiv = '';
 
     lines.forEach((line) => {
       // create line div for each event
-      chartDiv += this.createLineDiv(line, instruments);
+      chartDiv += this.createLineDiv(line, instruments, width);
       this.currentPhraseIndex++;
     });
 
     return chartDiv;
   }
 
-  createLineDiv(line, instruments) {
-    let lineDiv = `<div class="line">`;
+  createLineDiv(line, instruments, width) {
+    let lineDiv = `<div class="line" style="width: `;
+    lineDiv += width
+    lineDiv += `px">`
 
     line.forEach((event) => {
       lineDiv += this.createEventDiv(event, instruments);
@@ -155,7 +157,7 @@ class ChordsRenderer {
 
     const lines = convertVerseToEventsWithOpts(verse, opts);
 
-    return this.createEventHTMLChordChart(lines, opts.instrumentsConfig.instrumentsToRender);
+    return this.createEventHTMLChordChart(lines, opts.instrumentsConfig.instrumentsToRender, opts.maxWidth);
   }
 }
 
