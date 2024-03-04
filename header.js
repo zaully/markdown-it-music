@@ -105,9 +105,6 @@ const HEADER = `<!DOCTYPE html>
 </script>
 
 <style id="layout">
-  .chart {
-    font-family: "Monaco", "Menlo", "Consolas", monospace;
-  }
 
   .voice {
     display: flex;
@@ -115,6 +112,7 @@ const HEADER = `<!DOCTYPE html>
   }
 
   .line {
+    font-family: "Monaco", "Menlo", "Consolas", monospace;
     display: flex;
     flex-wrap: wrap;
     white-space: pre;

@@ -43,7 +43,7 @@ class ChordsRenderer {
   }
 
   createEventHTMLChordChart(lines, instruments) {
-    let chartDiv = `<div class="chart">`;
+    let chartDiv = '';
 
     lines.forEach((line) => {
       // create line div for each event
@@ -51,7 +51,7 @@ class ChordsRenderer {
       this.currentPhraseIndex++;
     });
 
-    return chartDiv + "</div>";
+    return chartDiv;
   }
 
   createLineDiv(line, instruments) {
