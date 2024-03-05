@@ -55,7 +55,7 @@ class ChordsRenderer {
   }
 
   createLineDiv(line, instruments, width) {
-    let lineDiv = `<div class="line" style="scroll-snap-align: start; width: `;
+    let lineDiv = `<div class="line" style="scroll-snap-stop: always; scroll-snap-align: start; width: `;
     lineDiv += width
     lineDiv += `px">`
 
