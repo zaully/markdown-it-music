@@ -118,7 +118,7 @@ function MarkdownMusic(md) {
       if (md.userOpts.instrumentsConfig.instrumentsToRender) {
         var ins = token.info.replace(abc.lang, '')
         if (md.userOpts.instrumentsConfig.instrumentsToRender.has(ins)) {
-          return '<div class="'+ ins +'">' + md.rendererRegistry[token.info](token.content, md.getOptions()) + '</div>';
+          return '<div class="'+ ins +'" style="scroll-snap-stop: always; scroll-snap-align: start">' + md.rendererRegistry[token.info](token.content, md.getOptions()) + '</div>';
         }
       }
       return '';
