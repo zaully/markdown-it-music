@@ -11,6 +11,7 @@ class ChordsRenderer {
   constructor(opts) {
     this.voiceOrder = [];
     this.transposeAmount = 0;
+    this.transposeSharpFlatPref = '#';
     this.currentPhraseIndex = 0;
     this.chordIndex = 0;
     this.chordsUsed = [];
@@ -21,7 +22,8 @@ class ChordsRenderer {
   setOptions(opts) {
     if (!opts) return;
 
-    this.transposeAmount = opts.transpose || 0;
+    this.transposeAmount = +opts.transpose.replace(/[^0-9-]/g, '') || 0;
+    this.transposeSharpFlatPref = opts.transpose.replace(/[0-9-]/g, '');
 
     if (opts.chords) {
       Object.entries(opts.chords).forEach(([chord, shorthands]) => {
@@ -130,7 +132,7 @@ class ChordsRenderer {
 
   createVoiceDiv(voice) {
     if (voice.content instanceof Chord) {
-      voice.content = voice.content.transpose(this.transposeAmount);
+      voice.content = voice.content.transpose(this.transposeAmount, this.transposeSharpFlatPref);
     }
 
     if (this.isContentBarLine(voice)) {
