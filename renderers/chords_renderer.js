@@ -131,9 +131,14 @@ class ChordsRenderer {
       const root = chord.root;
       const quality = chord.quality || '';
       const bass = chord.bass || '';
+      const duration = chord.duration || '';
+      
+      // Count underscores in duration for underline styling
+      const underscoreCount = (duration.match(/_/g) || []).length;
+      const underlineClass = underscoreCount > 0 ? ` chord-underline-${underscoreCount}` : '';
       
       // Create structured chord layout with sections matching the image layout
-      let chordHTML = '<span class="chord">';
+      let chordHTML = `<span class="chord${underlineClass}">`;
       chordHTML += '<span class="chord-container">';
       
       // Root note section (large, spans both rows on the left)

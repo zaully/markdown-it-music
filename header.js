@@ -163,6 +163,40 @@ const HEADER = `<!DOCTYPE html>
     align-self: end;
   }
 
+  .chord-underline-1 {
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+  }
+
+  .chord-underline-2 {
+    border-bottom: 3px double currentColor;
+    padding-bottom: 2px;
+  }
+
+  .chord-underline-3 {
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    box-shadow: 0 3px 0 0 currentColor;
+  }
+
+  .chord-underline-4 {
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 2px;
+    box-shadow: 0 4px 0 0 currentColor;
+  }
+
+  .chord-underline-5 {
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 2px;
+    box-shadow: 0 4px 0 0 currentColor, 0 6px 0 0 currentColor;
+  }
+
+  .chord-underline-6 {
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 2px;
+    box-shadow: 0 4px 0 0 currentColor, 0 6px 0 0 currentColor, 0 8px 0 0 currentColor;
+  }
+
   .highlight {
     font-weight: bold;
   }
