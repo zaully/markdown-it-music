@@ -119,8 +119,48 @@ const HEADER = `<!DOCTYPE html>
     break-inside: avoid;
   }
 
+  .event > div {
+    min-height: 2em;
+    max-height: 2em;
+  }
+
   .chord {
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    min-height: 2em;
+    max-height: 2em;
+  }
+
+  .chord-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    gap: 0.1em;
+    margin-left: 0.2em;
+    align-items: start;
+  }
+
+  .chord-root {
+    grid-row: 1 / 3;
+    font-size: 1.2em;
+    font-weight: bold;
+    align-self: center;
+  }
+
+  .chord-quality {
+    grid-row: 1;
+    grid-column: 2;
+    font-size: 0.8em;
+    align-self: start;
+  }
+
+  .chord-bass {
+    grid-row: 2;
+    grid-column: 2;
+    font-size: 0.8em;
+    align-self: end;
   }
 
   .highlight {
@@ -198,7 +238,8 @@ const LIGHT_THEME = `
   }
 
   .bar {
-    transform: scale(1.8);
+    font-size: 1.5em;
+    transform: scale(1.2);
   }
 
   .c1 {
@@ -261,7 +302,8 @@ const DARK_THEME = `
   }
 
   .bar {
-    transform: scale(1.8);
+    font-size: 1.5em;
+    transform: scale(1.2);
   }
 
   .c1 {

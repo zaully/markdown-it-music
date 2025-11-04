@@ -96,6 +96,10 @@ class ChordsRenderer {
     return ((content || '').match(invisibleRe) || []).length === 1;
   }
 
+  isContentChordIdentifiers(content) {
+    return content === '%' || content === '-' || content === '0';
+  }
+
   isContentBarLine(voice) {
     if (voice.content instanceof Chord) {
       return false;
@@ -122,10 +126,40 @@ class ChordsRenderer {
       // } else {
       //   return `<span class="chord highlight">${content}</span>`;
       // }
-      return `<span class="chord">${content}</span>`;
+      // return `<span class="chord">${content}</span>`;
+      const chord = voice.content;
+      const root = chord.root;
+      const quality = chord.quality || '';
+      const bass = chord.bass || '';
+      
+      // Create structured chord layout with sections matching the image layout
+      let chordHTML = '<span class="chord">';
+      chordHTML += '<span class="chord-container">';
+      
+      // Root note section (large, spans both rows on the left)
+      chordHTML += `<span class="chord-root">${root}</span>`;
+      
+      // Quality section (top-right, small)
+      chordHTML += `<span class="chord-quality">${quality}</span>`;
+      
+      // Bass note section (bottom-right, for slash chords)
+      if (bass) {
+        chordHTML += `<span class="chord-bass">/${bass}</span>`;
+      }
+      
+      chordHTML += '</span></span>';
+      
+      return chordHTML;
     }
     if (this.shouldBeInvisile(content)) {
       return " ".repeat(content.length);
+    }
+    if (this.isContentChordIdentifiers(content)) {
+      let contentHTML = '<span class="chord">';
+      contentHTML += '<span class="chord-container">';
+      contentHTML += `<span class="chord-root">${content}</span>`;
+      contentHTML += '</span></span>';
+      return contentHTML;
     }
     return content;
   }
