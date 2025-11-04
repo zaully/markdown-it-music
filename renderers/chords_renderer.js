@@ -7,6 +7,16 @@ const { Chord, compareChords } = require("../lib/chord.js");
 
 const invisibleRe = /^[_]+$/
 
+
+const chordIdentifierPattern = new RegExp(
+  [
+    "^",
+    "(_*)",
+    "([-0%])",
+    "$",
+  ].join(""),
+);
+
 class ChordsRenderer {
   constructor(opts) {
     this.voiceOrder = [];
@@ -97,7 +107,7 @@ class ChordsRenderer {
   }
 
   isContentChordIdentifiers(content) {
-    return content === '%' || content === '-' || content === '0';
+    return content.match(chordIdentifierPattern);
   }
 
   isContentBarLine(voice) {
@@ -159,10 +169,18 @@ class ChordsRenderer {
     if (this.shouldBeInvisile(content)) {
       return " ".repeat(content.length);
     }
-    if (this.isContentChordIdentifiers(content)) {
-      let contentHTML = '<span class="chord">';
+    const identifierMatch = this.isContentChordIdentifiers(content);
+    if (identifierMatch) {
+      const duration = identifierMatch[1] || '';  // Underscores
+      const identifier = identifierMatch[2];       // The -, 0, or % character
+      
+      // Count underscores for underline styling
+      const underscoreCount = duration.length;
+      const underlineClass = underscoreCount > 0 ? ` chord-underline-${underscoreCount}` : '';
+      
+      let contentHTML = `<span class="chord${underlineClass}">`;
       contentHTML += '<span class="chord-container">';
-      contentHTML += `<span class="chord-root">${content}</span>`;
+      contentHTML += `<span class="chord-root">${identifier}</span>`;
       contentHTML += '</span></span>';
       return contentHTML;
     }
