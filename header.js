@@ -211,30 +211,37 @@ const LIGHT_THEME = `
 
   .l1 {
     color: black;
+    transform: scale(0.8);
   }
 
   .l2 {
     color: black;
+    transform: scale(0.8);
   }
 
   .l3 {
     color: darkgreen;
+    transform: scale(0.8);
   }
 
   .l4 {
     color: darkmagenta;
+    transform: scale(0.8);
   }
 
   .l5 {
     color: darkred;
+    transform: scale(0.8);
   }
 
   .l6 {
     color: darkslateblue;
+    transform: scale(0.8);
   }
 
   .l7 {
     color: darkslategrey;
+    transform: scale(0.8);
   }
 
   div.diagram > svg {
@@ -267,30 +274,37 @@ const DARK_THEME = `
 
   .l1 {
     color: #fefefe;
+    transform: scale(0.8);
   }
 
   .l2 {
     color: #fefefe;
+    transform: scale(0.8);
   }
 
   .l3 {
     color: #009a2a;
+    transform: scale(0.8);
   }
 
   .l4 {
     color: #ff9fb0;
+    transform: scale(0.8);
   }
 
   .l5 {
     color: #fcdb95;
+    transform: scale(0.8);
   }
 
   .l6 {
     color: #1E90FF;
+    transform: scale(0.8);
   }
 
   .l7 {
     color: #778899;
+    transform: scale(0.8);
   }
 
   div.vextab > svg {
