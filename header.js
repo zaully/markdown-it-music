@@ -163,38 +163,77 @@ const HEADER = `<!DOCTYPE html>
     align-self: end;
   }
 
+  .chord-dotted {
+    margin-left: 0.1em;
+    font-size: 0.6em;
+  }
+
   .chord-underline-1 {
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 2px;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px;
+    background-position: 0 calc(100% - 3px);
+    background-repeat: no-repeat;
+    padding-bottom: 0px;
   }
 
   .chord-underline-2 {
-    border-bottom: 3px double currentColor;
-    padding-bottom: 2px;
+    background-image: 
+      linear-gradient(currentColor, currentColor),
+      linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px, 100% 1px;
+    background-position: 0 100%, 0 calc(100% - 3px);
+    background-repeat: no-repeat;
+    padding-bottom: 0px;
   }
 
   .chord-underline-3 {
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 2px;
-    box-shadow: 0 3px 0 0 currentColor;
+    background-image: 
+      linear-gradient(currentColor, currentColor),
+      linear-gradient(currentColor, currentColor),
+      linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px, 100% 1px, 100% 1px;
+    background-position: 0 calc(100% - 6px), 0 calc(100% - 3px), 0 100%;
+    background-repeat: no-repeat;
+    padding-bottom: 0px;
   }
 
   .chord-underline-4 {
-    border-bottom: 2px solid currentColor;
-    padding-bottom: 2px;
-    box-shadow: 0 4px 0 0 currentColor;
+    background-image: 
+      linear-gradient(currentColor, currentColor),
+      linear-gradient(currentColor, currentColor),
+      linear-gradient(currentColor, currentColor),
+      linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px, 100% 1px, 100% 1px, 100% 1px;
+    background-position: 0 100%, 0 calc(100% - 3px), 0 calc(100% - 6px), 0 calc(100% - 9px);
+    background-repeat: no-repeat;
+    padding-bottom: 0px;
   }
 
   .chord-underline-5 {
-    border-bottom: 2px solid currentColor;
-    padding-bottom: 2px;
-    box-shadow: 0 4px 0 0 currentColor, 0 6px 0 0 currentColor;
+    background-image: 
+      linear-gradient(currentColor, currentColor),
+      linear-gradient(currentColor, currentColor),
+      linear-gradient(currentColor, currentColor),
+      linear-gradient(currentColor, currentColor),
+      linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px, 100% 1px, 100% 1px, 100% 1px, 100% 1px;
+    background-position: 0 100%, 0 calc(100% - 3px), 0 calc(100% - 6px), 0 calc(100% - 9px), 0 calc(100% - 12px);
+    background-repeat: no-repeat;
+    padding-bottom: 0px;
   }
 
   .chord-underline-6 {
-    border-bottom: 2px solid currentColor;
-    padding-bottom: 2px;
-    box-shadow: 0 4px 0 0 currentColor, 0 6px 0 0 currentColor, 0 8px 0 0 currentColor;
+    background-image: 
+      linear-gradient(currentColor, currentColor),
+      linear-gradient(currentColor, currentColor),
+      linear-gradient(currentColor, currentColor),
+      linear-gradient(currentColor, currentColor),
+      linear-gradient(currentColor, currentColor),
+      linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px, 100% 1px, 100% 1px, 100% 1px, 100% 1px, 100% 1px;
+    background-position: 0 100%, 0 calc(100% - 3px), 0 calc(100% - 6px), 0 calc(100% - 9px), 0 calc(100% - 12px), 0 calc(100% - 15px);
+    background-repeat: no-repeat;
+    padding-bottom: 0px;
   }
 
   .highlight {

@@ -13,6 +13,7 @@ const chordIdentifierPattern = new RegExp(
     "^",
     "(_*)",
     "([-0%])",
+    "([.*])?",
     "$",
   ].join(""),
 );
@@ -106,7 +107,7 @@ class ChordsRenderer {
     return ((content || '').match(invisibleRe) || []).length === 1;
   }
 
-  isContentChordIdentifiers(content) {
+  parseContentChordIdentifiers(content) {
     return content.match(chordIdentifierPattern);
   }
 
@@ -142,14 +143,15 @@ class ChordsRenderer {
       const quality = chord.quality || '';
       const bass = chord.bass || '';
       const duration = chord.duration || '';
+      const dotted = chord.dotted || '';
       
       // Count underscores in duration for underline styling
       const underscoreCount = (duration.match(/_/g) || []).length;
       const underlineClass = underscoreCount > 0 ? ` chord-underline-${underscoreCount}` : '';
       
       // Create structured chord layout with sections matching the image layout
-      let chordHTML = `<span class="chord${underlineClass}">`;
-      chordHTML += '<span class="chord-container">';
+      let chordHTML = `<span class="chord">`;
+      chordHTML += `<span class="chord-container${underlineClass}">`;
       
       // Root note section (large, spans both rows on the left)
       chordHTML += `<span class="chord-root">${root}</span>`;
@@ -162,26 +164,38 @@ class ChordsRenderer {
         chordHTML += `<span class="chord-bass">/${bass}</span>`;
       }
       
-      chordHTML += '</span></span>';
+      chordHTML += '</span>';
+      
+      // Dotted section (appears after the chord container)
+      if (dotted) {
+        chordHTML += `<span class="chord-dotted">${dotted}</span>`;
+      }
+      
+      chordHTML += '</span>';
       
       return chordHTML;
     }
     if (this.shouldBeInvisile(content)) {
       return " ".repeat(content.length);
     }
-    const identifierMatch = this.isContentChordIdentifiers(content);
+    const identifierMatch = this.parseContentChordIdentifiers(content);
     if (identifierMatch) {
       const duration = identifierMatch[1] || '';  // Underscores
       const identifier = identifierMatch[2];       // The -, 0, or % character
+      const dotted = identifierMatch[3];
       
       // Count underscores for underline styling
       const underscoreCount = duration.length;
       const underlineClass = underscoreCount > 0 ? ` chord-underline-${underscoreCount}` : '';
       
-      let contentHTML = `<span class="chord${underlineClass}">`;
-      contentHTML += '<span class="chord-container">';
+      let contentHTML = `<span class="chord">`;
+      contentHTML += `<span class="chord-container${underlineClass}">`;
       contentHTML += `<span class="chord-root">${identifier}</span>`;
-      contentHTML += '</span></span>';
+      contentHTML += '</span>';
+      if (dotted) {
+        contentHTML += `<span class="chord-dotted">${dotted}</span>`;
+      }
+      contentHTML += '</span>';
       return contentHTML;
     }
     return content;
