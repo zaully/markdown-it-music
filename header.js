@@ -325,7 +325,6 @@ const LIGHT_THEME = `
 
   .l1 {
     color: black;
-    transform: scale(0.8);
   }
 
   .l2 {
@@ -389,7 +388,6 @@ const DARK_THEME = `
 
   .l1 {
     color: #fefefe;
-    transform: scale(0.8);
   }
 
   .l2 {
