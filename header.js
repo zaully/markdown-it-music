@@ -333,28 +333,24 @@ const LIGHT_THEME = `
 
   .l3 {
     color: darkgreen;
-    transform: translateY(0.5rem);
-    font-size: 0.8em;
+    transform: translateY(0.8rem);
   }
 
   .l4 {
     color: darkmagenta;
-    font-size: 0.8em;
+    transform: translateY(0.8rem);
   }
 
   .l5 {
     color: darkred;
-    font-size: 0.8em;
   }
 
   .l6 {
     color: darkslateblue;
-    font-size: 0.8em;
   }
 
   .l7 {
     color: darkslategrey;
-    font-size: 0.8em;
   }
 
   div.diagram > svg {
@@ -396,28 +392,24 @@ const DARK_THEME = `
 
   .l3 {
     color: #009a2a;
-    transform: translateY(0.5rem);
-    font-size: 0.8em;
+    transform: translateY(0.8rem);
   }
 
   .l4 {
     color: #ff9fb0;
-    font-size: 0.8em;
+    transform: translateY(0.8rem);
   }
 
   .l5 {
     color: #fcdb95;
-    font-size: 0.8em;
   }
 
   .l6 {
     color: #1E90FF;
-    font-size: 0.8em;
   }
 
   .l7 {
     color: #778899;
-    font-size: 0.8em;
   }
 
   div.vextab > svg {
